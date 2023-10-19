@@ -1,0 +1,33 @@
+{# list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listă de Sarcini</h1>
+    
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }} - {{ task.dueDate|date('Y-m-d') }}
+                <a href="{{ path('app_view', {'id': task.id}) }}">Vizualizare</a>
+                <a href="{{ path('app_edit', {'id': task.id}) }}">Editare</a>
+                <a href="{{ path('app_delete', {'id': task.id}) }}">Ștergere</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {# Afișează butoanele pentru navigarea între pagini #}
+    <div class="pagination">
+        {% if currentPage > 1 %}
+            <a href="{{ path('app_list', { 'page': currentPage - 1 }) }}">Anterioară</a>
+        {% endif %}
+
+        {% for page in 1..totalPages %}
+            <a href="{{ path('app_list', { 'page': page }) }}">{{ page }}</a>
+        {% endfor %}
+
+        {% if currentPage < totalPages %}
+            <a href="{{ path('app_list', { 'page': currentPage + 1 }) }}">Următoare</a>
+        {% endif %}
+    </div>
+{% endblock %}

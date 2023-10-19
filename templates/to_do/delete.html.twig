@@ -1,0 +1,14 @@
+{# templates/task/delete.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Șterge Sarcină</h1>
+    
+    <p>Sunteți sigur că doriți să ștergeți următoarea sarcină?</p>
+    <p><strong>{{ task.title }}</strong></p>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Confirmă Ștergerea</button>
+    </form>
+{% endblock %}
